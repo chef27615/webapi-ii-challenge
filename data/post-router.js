@@ -52,16 +52,14 @@ router.put('/:id', async (req, res) => {
         const post = await Posts.update(req.params.id, req.body);
         // const {title, contents } =req.body;
         if(post){
-            res.status(200).json(post)
+            res.status(200).json(post);
         }
         // else if(title&&contents){
         //     res.status(400).json({ message: "The post with the specified ID does not exist." })
         // }
         else{
-            res.status(400).json({ errorMessage: "Please provide title and contents for the post." })
-        }
-        
-    } catch (err){ res.status(500).json({ error: "The post information could not be modified." })}
+            res.status(404).json({ errorMessage: "Please provide title and contents for the post." })
+        }} catch (err){ res.status(500).json({ error: "The post information could not be modified." })}
 })
 
 module.exports = router;
